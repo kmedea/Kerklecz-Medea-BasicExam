@@ -15,9 +15,8 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
   sortCharactersByName(userDatas);
   selectCharactersPortraitAndName(userDatas);
-  console.log(userDatas);
+  searchCharacter();
 }
-
 getGameOfThronesCharacterDatas(
   './json/got.json',
   successGetGameOfThronesCharacterDatas
@@ -42,12 +41,17 @@ function selectCharactersPortraitAndName(user) {
   var characterRow = '';
   for (var i = 0; i < user.length; i++) {
     characterRow += `
-                    <div class=div__character__Portrait>
-                    <img src=${user[i].portrait}>
+                    <div class=div__character__portrait>
+                    <img src=${user[i].portrait} alt="portrait">
                     <p>${user[i].name}</p>
                     </div>
                     `;
   }
   characterElement.innerHTML = characterRow;
 }
-
+function searchCharacter() {
+  var searchInput = document.querySelector('.div__description__search');
+  searchInput.innerHTML = `
+                          <input class="search__input" type="text" placeholder="Search a character">
+                          <input class="search__button" type="button" value="Search">`;
+}
