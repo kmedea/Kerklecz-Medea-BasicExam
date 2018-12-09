@@ -15,7 +15,8 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   // Innen hívhatod meg a többi függvényed
   sortCharactersByName(userDatas);
   selectCharactersPortraitAndName(userDatas);
-  searchCharacter();
+  searchCharacterTextButton();
+  clickButton(userDatas);
 }
 getGameOfThronesCharacterDatas(
   './json/got.json',
@@ -49,9 +50,29 @@ function selectCharactersPortraitAndName(user) {
   }
   characterElement.innerHTML = characterRow;
 }
-function searchCharacter() {
+function searchCharacterTextButton() {
   var searchInput = document.querySelector('.div__description__search');
   searchInput.innerHTML = `
                           <input class="search__input" type="text" placeholder="Search a character">
                           <input class="search__button" type="button" value="Search">`;
+}
+
+function clickButton(user) {
+  var searchButton = document.querySelector('.search__button');
+  searchButton.addEventListener('click', function searchCharacter() {
+    var userInput = document.querySelector('.search__input').value;
+    userInput = userInput.toLowerCase();
+    var descriptionCharacter = document.querySelector('.div__description__character');
+    for (var i = 0; i < user.length; i++) {
+      if ( userInput === user[i].name.toLowerCase()) {
+        descriptionCharacter.innerHTML = `
+                                        <p><img src=${user[i].picture} alt="picture"></p>
+                                        <p>${user[i].name}</p>
+                                        <p>${user[i].bio}</p>
+                                       `;
+      } else {
+        descriptionCharacter.innerHTML = 'Character not found.';
+      }
+    }
+  });
 }
