@@ -18,6 +18,8 @@ function successGetGameOfThronesCharacterDatas(xhttp) {
   selectCharactersPortraitAndName(livingUsers);
   searchCharacterTextButton();
   clickButton(livingUsers);
+  generateElement(livingUsers);
+  // clickOnPortrait(livingUsers);
 }
 getGameOfThronesCharacterDatas(
   './json/got.json',
@@ -27,6 +29,8 @@ getGameOfThronesCharacterDatas(
 
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
+
+//  élő szereplők kiválasztása
 function livingCharacters(user) {
   var livingCharactersData = [];
   for (var i = 0; i < user.length; i++) {
@@ -36,7 +40,7 @@ function livingCharacters(user) {
   }
   return livingCharactersData;
 }
-
+// az élő szereplők sorbarendezése
 function sortCharactersByName(user) {
   for (var i = 0; i < user.length - 1; i++) {
     for (var j = i + 1; j < user.length; j++) {
@@ -48,25 +52,28 @@ function sortCharactersByName(user) {
     }
   }
 }
+// a szereplők képeinek és neveinek megjelenítése
 function selectCharactersPortraitAndName(user) {
   var characterElement = document.querySelector('.main__div__portraits');
   var characterRow = '';
   for (var i = 0; i < user.length; i++) {
     characterRow += `
-                    <div class=div__character__portrait>
-                    <img src=${user[i].portrait} alt="portrait" onclick="clickOnPortrait()">
+                    <div class="div__character__portrait">
+                    <img class="portraitCharacter" src="${user[i].portrait}" alt="portrait">
                     <p>${user[i].name}</p>
                     </div>
                     `;
   }
   characterElement.innerHTML = characterRow;
 }
+// a kereső mező és gomb létrehozása
 function searchCharacterTextButton() {
   var searchInput = document.querySelector('.div__description__search');
   searchInput.innerHTML = `
                           <input class="search__input" type="text" placeholder="Search a character">
                           <input class="search__button" type="button" value="Search">`;
 }
+// függvény - találat esetén fusson le
 function characterOnDisplay(found) {
   var descriptionCharacter = document.querySelector('.div__description__character');
   var house = '';
@@ -83,12 +90,13 @@ function characterOnDisplay(found) {
                                        `;
   document.querySelector('.search__input').value = '';
 }
+// függvény - amennyiben nem történt találat
 function characterNoFound() {
   var noDescription = document.querySelector('.div__description__character');
   noDescription = 'Character not found.';
   document.querySelector('.search__input').value = '';
 }
-
+// keresési függvény
 function searchCharacter(user) {
   var userInput = document.querySelector('.search__input').value;
   userInput = userInput.toLowerCase();
@@ -102,7 +110,34 @@ function searchCharacter(user) {
     }
   }
 }
+// a keresőgomb életre keltése
 function clickButton(user) {
   var searchButton = document.querySelector('.search__button');
   searchButton.addEventListener('click', function () {searchCharacter(user);});
 }
+/* a karakter adatainak kiíratása
+function showCharacterDatas(user) {
+  var descriptionCharacter = document.querySelector('.div__description__character');
+  var house = '';
+  if (user[0].house) {
+    house = `<img src="/assets/houses/${user[0].house}.png">`;
+  } else {
+    house = '';
+  }
+  descriptionCharacter.innerHTML = `
+                                    <p><img src="${user[0].picture} alt="picture"></p>
+                                    <p>${user[0].name}</p>
+                                    <p>${house}</p>
+                                    <p>${user[0].bio}</p>
+                                    `;
+}
+// képre kattintás funkció hozzáadása
+function clickOnPortrait(user) {
+  var characterPortrait = document.querySelectorAll('.div__character__portrait');
+  for (var i = 0; i < characterPortrait.length; i++) {
+    characterPortrait[i].addEventListener('click', function () {
+    characterPortrait[i] = user[i];
+    characterPortrait.target.
+    })
+  }
+}*/

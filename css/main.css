@@ -1,0 +1,62 @@
+body {
+  background-color: #2a2a3c;
+  color: rgb(36, 53, 68); 
+  font-family: 'Cinzel Decorative', cursive;
+  }
+  
+  .div__character__portrait {
+    float: left;
+    width: 12%;
+    text-align: center
+  }
+  .div__character__portrait:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
+  .main__div__portraits {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 80%;
+    height: 100vh;
+    overflow: scroll;
+  }
+  .main__div__description {
+    float: left;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    height: 100vh;
+    width: 20%;
+    right: 0;
+    overflow: scroll;
+    background-color: rgb(70, 94, 139);
+  }
+  
+  .search__input {
+    color: #f2f2f2;
+    background-color: rgba(66, 81, 112);
+    border: #f2f2f2 solid .5px;
+    border-radius: 5px;
+    font-family: 'Cinzel Decorative', cursive;
+  }
+  
+  .search__button {
+    color: rgba(66, 81, 112);
+    transition-duration: .6s;
+    border-radius: 7px;
+    font-family: 'Cinzel Decorative', cursive;
+    padding: 2px 7px;
+    margin: 7px;
+  }
+  .search__button:hover{
+    box-shadow:
+                1px 1px #53a7ea,
+                2px 2px #53a7ea,
+                3px 3px #53a7ea;
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+  }
